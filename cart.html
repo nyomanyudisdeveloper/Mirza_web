@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+    <header onclick="window.location.href='index.html'">
+        <h1>Timedoor Store</h1>
+        <nav>
+            <a href="dashboard.html">Home</a>
+            <a href="contact.html">Contact</a>
+            <a href="about.html">About</a>
+            <a href="cart.html">Cart</a>
+        </nav>
+    </header>
+    <main id="landing-page">
+        <h2>Your Cart</h2>
+        <div id="cart-container" class="cart-container">
+
+
+        </div>
+        <p id="total-price">Total: $0</p>
+        <button id="checkout-button">Proceed to Payment</button>
+    </main>
+    <footer>
+        <p>&copy; 2024 Timedoor Store. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="script.js"></script>
+<script>
+    AOS.init();
+</script>

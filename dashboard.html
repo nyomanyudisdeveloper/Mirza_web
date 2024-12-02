@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+    <header onclick="window.location.href='index.html'">
+        <h1>Timedoor Store</h1>
+        <nav>
+            <a href="dashboard.html">Home</a>
+            <a href="contact.html">Contact</a>
+            <a href="about.html">About</a>
+            <a href="cart.html">Cart</a>
+        </nav>
+    </header>
+    <main>
+        <section style="margin-bottom: 32px;">
+            <div class="jumbotron">
+                <h2>Welcome to Our Store</h2>
+                <p>Explore our wide range of products. Click on a product to view details!</p>
+            </div>
+            <div class="model-container">
+                <p>Welcome to Timedoor Store, a fashion store designed especially for coding and technology enthusiasts! We offer high-quality 100% cotton T-shirts that are comfortable, durable, and skin-friendly, perfect for your daily activities. Whether you take pride in being part of the digital world or are simply intrigued by the unique vibes of the programming realm, our collection is the perfect choice to showcase your identity and passion.<br><br>
+                    Don't miss the chance to own the best T-shirts that blend fashion and technology, only at Timedoor Store. Get your favorite T-shirt today and be part of a community united in creativity and innovation!</p>   
+                <img src="assets/jumbotron/painting.png" alt="Model Image">
+            </div>
+            <button onclick="window.location.href='about.html'" style="margin-left: 8%;">Learn More</button>
+        </section>
+        <section >
+            <h2>Products</h2>
+            <div id="product-list">
+                <div class="product">
+                    <img src="assets/images/product-1.png" alt="Product Image"> 
+                    <p>Product 1 - $10</p> 
+                    <button class="buy-button" onclick="goToProductDetail(1)">Buy Me</button> 
+                </div>
+                <div class="product">
+                    <img src="assets/images/product-2.png" alt="Product Image"> 
+                    <p>Product 2 - $20</p> 
+                    <button class="buy-button" onclick="goToProductDetail(2)">Buy Me</button> 
+                </div>
+                <div class="product">
+                    <img src="assets/images/product-3.png" alt="Product Image"> 
+                    <p>Product 3 - $30</p> 
+                    <button class="buy-button" onclick="goToProductDetail(3)">Buy Me</button> 
+                </div>
+                <div class="product">
+                    <img src="assets/images/product-4.png" alt="Product Image"> 
+                    <p>Product 4 - $40</p> 
+                    <button class="buy-button" onclick="goToProductDetail(4)">Buy Me</button> 
+                </div>
+                <div class="product">
+                    <img src="assets/images/product-5.png" alt="Product Image"> 
+                    <p>Product 5 - $50</p> 
+                    <button class="buy-button" onclick="goToProductDetail(5)">Buy Me</button> 
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Timedoor Store. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="script.js"></script>
+<script>
+    AOS.init();
+</script>

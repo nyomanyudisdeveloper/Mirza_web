@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+    <header onclick="window.location.href='index.html'">
+        <h1>Timedoor Store</h1>
+        <nav>
+            <a href="dashboard.html">Home</a>
+            <a href="contact.html">Contact</a>
+            <a href="about.html">About</a>
+            <a href="cart.html">Cart</a>
+        </nav>
+    </header>
+    <main>
+        <h2 id="product-title">Product Title</h2>
+        <img id="product-img" src="" alt="Product Image">
+        <p id="product-description">This is an amazing product. Find out more details here.</p>
+        <p id="product-price">Price: $<span id="product-price-value"></span></p>
+        <button id="add-to-cart-button">Add to Cart</button>
+    </main>
+    <footer>
+        <p>&copy; 2024 Timedoor Store. All Rights Reserved.</p>
+    </footer>
+    <div class="modal-container">
+        <div class="modal">
+            <h3>This is Modal</h3>
+            <span onclick="hideModal()">x</span>
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="script.js"></script>
+<script>
+    AOS.init();
+</script>
