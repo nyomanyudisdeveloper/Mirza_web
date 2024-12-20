@@ -4,9 +4,7 @@ function goToProductDetail(productId) {
 }
 
 function loadProductDetail() {
-    console.log("loadProductDetail")
     const productId = localStorage.getItem('selectedProductId');
-    console.log("productId = ",productId)
     const imagePath = `assets/images/product-${productId}.png`; // Placeholder image path
     if (productId) {
         // Simulated products for demo purposes
@@ -98,60 +96,7 @@ function hideModal(){
 }
 
 
-document.getElementById('checkout-button')?.addEventListener('click', () => {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const checkboxes = document.querySelectorAll('.item-checkbox');
-    let selectedItems = [];
-
-
-    checkboxes.forEach(checkbox => {
-        if (checkbox.checked) {
-            const index = checkbox.dataset.index;
-            selectedItems.push(cart[index]);
-        }
-    });
-
-    var list_product = []
-    var total = 0
-    
-
-    if (selectedItems.length > 0) {
-        selectedItems.forEach(item => {
-            list_product.push({
-                name:item.name, 
-                price:item.price
-            })
-            // Create and insert product details into the order summary
-            // const productItem = document.createElement('p');
-            // productItem.textContent = `${item.name} - $${item.price}`;
-            // orderSummary.insertBefore(productItem, totalPriceElement); // Insert before total price
-            // Calculate total price
-            total += item.price;
-        });
-        console.log("list_product = ",list_product)
-        localStorage.setItem('listProductPayment', JSON.stringify(list_product));
-        localStorage.setItem('totalPayment', total);
-        window.location.href= "payment.html"
-
-        // totalPriceElement.textContent = `Total: $${total}`;
-    } else {
-        alert("Please select at least one item to proceed.");
-    }
-});
-
-
-document.querySelector('.payment-form')?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert('Payment Successful! Thank you for your purchase.');
-    localStorage.removeItem('selectedItems'); // Clear selected items after purchase
-    localStorage.removeItem('cart'); // Clear the entire cart after purchase
-    window.location.href = 'index.html'; // Redirect to home or shop page
-});
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("DOMContentLoaded")
     if (window.location.pathname.includes('product-detail.html')) {
         loadProductDetail();
          // Add code below to adding event listener for "Add to Cart" button
@@ -165,25 +110,57 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname.includes('cart')) {
         loadCartItems();
     }
-    if (window.location.pathname.includes('payment.html')) {
-        console.log("payment.html")
-        // Ensure that #order-summary and #total-price elements exist before proceeding
-        const orderSummary = document.getElementById('order-summary');
-        const totalPriceElement = document.getElementById('total-price');
-
-        const listProductPayment = JSON.parse(localStorage.getItem('listProductPayment'));
-        listProductPayment.forEach((item) => {
-            const productItem = document.createElement('p');
-            productItem.textContent = `${item.name} - $${item.price}`;
-            orderSummary.insertBefore(productItem, totalPriceElement); 
-        })
-
-        const totalPayment = localStorage.getItem('totalPayment')
-        totalPriceElement.textContent = `Total: $${totalPayment}`;
-
-        // Retrieve selected items from localStorage
-        const selectedItems = JSON.parse(localStorage.getItem('selectedItems')) || [];
-        console.log("Selected Items:", selectedItems);
-    }
   }
 );
+document.getElementById('checkout-button')?.addEventListener('click', () => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const checkboxes = document.querySelectorAll('.item-checkbox');
+    let selectedItems = [];
+
+    checkboxes.forEach(checkbox => {
+        if (checkboxes.checked) {
+            const index = checkbox.dataset.index;
+            selectedItems.push(cart[index]);
+        }
+    });
+
+    if (selectedItems.length > 0) {
+        localStorage.setItem('selectedItems',JSON.stringify(selectedItems));
+        window.location.href = 'payment.html';
+    } else {
+        alert("Please select at least one item to proceed.");
+    }
+});
+
+if (window.location.pathname.includes('payment.html')) {
+    const orderSummary = document.getElementById('order-summary');
+    const totalPriceElement = document.getElementById('total-price');
+   
+    if (!orderSummary || !totalPriceElement) {
+        console.error("Missing order-summary or total-price elements in the HTML.");
+        return;
+    }
+
+
+    const selectedItems = JSON.parse(localStorage.getItem('selectedItems')) || [];
+    console.log("Selected Items:", selectedItems);
+    
+    let total = 0;
+    if (selectedItems.length === 0) {
+        console.log("No items selected for purchase.");
+    } else {
+        selectedItems.forEach(item => {
+            const productItem = document.createElement('p');
+            productItem.textContent = `${item.name} - $${item.price}`;
+            orderSummary.insertBefore(productItem, totalPriceElement);
+            total += item.price;
+        });
+        totalPriceElement.textContent = `Total: $${total}`;
+    }
+    document.querySelector('.payment-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Payment Successful! Thank you for your purchase.');
+        localStorage.removeItem('selectedItems');
+        localStorage.removeItem('cart');
+        window.location.href = 'index.html';
+    });
